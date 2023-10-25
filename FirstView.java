@@ -58,5 +58,13 @@ public class FirstView extends JFrame {
         
         //--------------------------------------------------------------------------------------------
     }
-
+    public void AddGameListener(ActionListener listener){
+        btnJoin.addActionListener(listener);
+    }
+    public void AddInstructionListener(ActionListener listener){
+        btnInstructions.addActionListener(listener);
+    }
+    public void AddDoListener(ActionListener listener){
+        btnDo.addActionListener(listener);
+    }
 }
