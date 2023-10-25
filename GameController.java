@@ -33,7 +33,7 @@ public class GameController {
     class GameListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Handle the "JUGAR" button action
+         
             view.dispose();
             gameView.showGameView();
             
