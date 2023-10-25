@@ -1,15 +1,14 @@
-
 package view;
+import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Font;
 import javax.swing.*;
 
 
 public class FirstView extends JFrame {
     private JLabel jBackground;
     private JLabel jContent;
-    private JButton btnJoin, btnLeave, btnInstructions;
+    private JButton btnJoin, btnDo, btnInstructions;
     private ImageIcon backgroundIcon;
     
     public FirstView(){
@@ -29,11 +28,35 @@ public class FirstView extends JFrame {
         setLayout(null);
         add(jContent);
         //-------------------------------------------------------------------------------------------
+
         btnJoin = new JButton("JUGAR");
         btnJoin.setBounds(520,650, 150,35);
         jContent.add(btnJoin);
-                
+        btnJoin.setFocusPainted(false);  
+        btnJoin.setFont(new Font("Arial", Font.BOLD, 24));
+        btnJoin.setForeground(Color.WHITE);
+        btnJoin.setBorder(null);
+        btnJoin.setBackground(Color.BLACK);
+        //------------------------------------------------------------------------------------------- 
         
+        btnDo = new JButton("Para qué sirve");
+        btnDo.setBounds(850, 580, 200, 60);
+        jContent.add(btnDo);
+        btnDo.setFont(new Font("Arial",Font.BOLD,26));
+        btnDo.setBorder(null);
+        btnDo.setFocusPainted(false);
+        btnDo.setBackground(Color.GRAY);
+        //--------------------------------------------------------------------------------------------
+        
+        btnInstructions = new JButton ("Cómo Jugar");
+        btnInstructions.setBounds(185,580,200,60);
+        jContent.add(btnInstructions);
+        btnInstructions.setFont(new Font("Arial",Font.BOLD,26));
+        btnInstructions.setBorder(null);
+        btnInstructions.setFocusPainted(false);
+        btnInstructions.setBackground(Color.GRAY);
+        
+        //--------------------------------------------------------------------------------------------
     }
 
 }
