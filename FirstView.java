@@ -1,17 +1,22 @@
+
 package view;
+import controller.FirstController;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 
-public class FirstView extends JFrame {
+public class FirstView extends JFrame implements ActionListener {
     private JLabel jBackground;
     private JLabel jContent;
     private JButton btnJoin, btnDo, btnInstructions;
     private ImageIcon backgroundIcon;
-    
-    public FirstView(){
+    private FirstController myController;
+        public FirstView(){
         startComponent();
     }
     private void startComponent(){
@@ -37,6 +42,7 @@ public class FirstView extends JFrame {
         btnJoin.setForeground(Color.WHITE);
         btnJoin.setBorder(null);
         btnJoin.setBackground(Color.BLACK);
+        btnJoin.addActionListener(this);
         //------------------------------------------------------------------------------------------- 
         
         btnDo = new JButton("Para qué sirve");
@@ -57,14 +63,17 @@ public class FirstView extends JFrame {
         btnInstructions.setBackground(Color.GRAY);
         
         //--------------------------------------------------------------------------------------------
+
     }
-    public void AddGameListener(ActionListener listener){
-        btnJoin.addActionListener(listener);
+
+    public void setFirstController(FirstController myController) {
+        this.myController = myController;
     }
-    public void AddInstructionListener(ActionListener listener){
-        btnInstructions.addActionListener(listener);
-    }
-    public void AddDoListener(ActionListener listener){
-        btnDo.addActionListener(listener);
+    
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==btnJoin){
+            myController.chargeGameFrame();
+            
+        }
     }
 }
