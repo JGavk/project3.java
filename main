@@ -1,0 +1,26 @@
+package application;
+
+import controller.FirstController;
+import javax.swing.SwingUtilities;
+import view.FirstView;
+import view.GameView;
+
+
+
+public class Game {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+        FirstController myController = new FirstController();
+        FirstView frame = new FirstView();
+        frame.setFirstController(myController);
+        myController.setFirstView(frame);
+
+        });
+        
+    }
+    
+}
