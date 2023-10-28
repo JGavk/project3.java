@@ -1,51 +1,37 @@
 package model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import controller.FirstController;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import javax.swing.Timer;
-
-
 
 
 
 public class GameModel {
-    private int score;
-    private int fails;
-    private int good;
-    private List<Cubo> squareArray;
+    private List<List<Square>> squareArray;
+    private FirstController myController;
+    public GameModel() {
+        squareArray = new ArrayList<>();
+        squareArray.add(new ArrayList<>());
+        squareArray.add(new ArrayList<>());
+        squareArray.add(new ArrayList<>());
+        squareArray.add(new ArrayList<>());
     
-    public GameModel(){
+
     
-        squareArray= new ArrayList<>(5);
-
-        for(int i=0; i<5; i++){
-            Cubo square1 = new Cubo("",100,100);
-            
-            squareArray.add(square1);
-
-        }
-        Timer timer = new Timer(3000, (ActionEvent e) -> {
-            Random rand = new Random();
-            String[] imageUrls = {"/images/image1.jpg", "/images/image2.jpg", "/images/image3.jpg","images/image3.jpg"};
-            
-            for (Cubo cubo : squareArray) {
-                int randomIndex = rand.nextInt(imageUrls.length);
-                cubo.setImageUrl(imageUrls[randomIndex]);
-            }
-        });
-        timer.start();
+        Cubo cubo1 = new Cubo("/images/image1.jpg",100,100);
+        squareArray.get(0).add(cubo1);
+        Cubo cubo2 = new Cubo("/images/image2.jpg",100,100);
+        squareArray.get(1).add(cubo2);
+        Cubo cubo3 = new Cubo("/images/image3.jpg",100,100);
+        squareArray.get(2).add(cubo3);
+        Cubo cubo4 = new Cubo("/images/image4.jpg",100,100);
+        squareArray.get(3).add(cubo4);
     }
-
-
-    public List<Cubo> getSquareArray() {
-        return squareArray;
+      public void setFirstController(FirstController myController) {
+       this.myController = myController;
+  }
+       public List<List<Square>> getSquareArray(){
+          
+           return squareArray;}
 }
-    
-    
-    
-       
-    
-}
+
