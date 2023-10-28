@@ -17,6 +17,9 @@ public abstract class Square {
         Image scaledImage = originalImage.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         image = new ImageIcon(scaledImage);
         }
+    public ImageIcon getImage() {
+        return image;
+    }
     public abstract void draw(Graphics g, int x, int y);
 }   
     // Subclase cuadrado
