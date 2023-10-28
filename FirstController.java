@@ -8,6 +8,7 @@ import model.GameModel;
 public class FirstController {
     private FirstView frame;
     private GameView game;
+    private GameModel model;
     public FirstController() {
     
    }    
@@ -18,6 +19,7 @@ public class FirstController {
 
     public void chargeGameFrame() {
         GameView game = new GameView();
+        GameModel model = new GameModel();
         frame.dispose();
     }
 
