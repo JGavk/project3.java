@@ -1,3 +1,4 @@
+
 package model;
 
 import controller.FirstController;
@@ -13,6 +14,12 @@ public class GameModel {
         this.myController = myController;
         squareArray = new ArrayList<>();
 
+    }
+       
+    public void setFirstController(FirstController myController) {
+       this.myController = myController;
+  }
+    public void setSquareArray(){
         Cubo cubo1 = new Cubo("/images/image1.jpg", 100, 100);
         squareArray.add(cubo1);
         Cubo cubo2 = new Cubo("/images/image2.jpg",100,100);
@@ -29,13 +36,6 @@ public class GameModel {
         squareArray.add(cubo7);
         Cubo cubo8 = new Cubo("/images/image1.jpg",100,100);
         squareArray.add(cubo8);
-        
-    }
-       
-    public void setFirstController(FirstController myController) {
-       this.myController = myController;
-  }
-    public void setSquareArray(List<Cubo> squareArray){
         this.squareArray= squareArray;
     
     }
@@ -43,5 +43,8 @@ public class GameModel {
           
         return squareArray;}
 }
+
+
+       
 
 
