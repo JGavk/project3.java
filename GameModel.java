@@ -10,10 +10,10 @@ public class GameModel {
     private List<Cubo> squareArray;
     private FirstController myController;
     public GameModel() {
-        
+        this.myController = myController;
         squareArray = new ArrayList<>();
-    
-        Cubo cubo1 = new Cubo("/images/image1.jpg",100,100);
+
+        Cubo cubo1 = new Cubo("/images/image1.jpg", 100, 100);
         squareArray.add(cubo1);
         Cubo cubo2 = new Cubo("/images/image2.jpg",100,100);
         squareArray.add(cubo2);
@@ -29,6 +29,7 @@ public class GameModel {
         squareArray.add(cubo7);
         Cubo cubo8 = new Cubo("/images/image1.jpg",100,100);
         squareArray.add(cubo8);
+        
     }
        
     public void setFirstController(FirstController myController) {
@@ -42,4 +43,5 @@ public class GameModel {
           
         return squareArray;}
 }
+
 
