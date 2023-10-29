@@ -22,10 +22,13 @@ public class FirstController {
     public void setFirstView(FirstView frame) {
         this.frame=frame;
     }
-
+    public void setSquareArray() {
+        model.setSquareArray();
+    }
     public void chargeGameFrame() {
         GameView game = new GameView();
         model = new GameModel();
+        this.setSquareArray();
         this.squareArray = model.getSquareArray();
         game.displaySquareArray(squareArray);
         frame.dispose();
@@ -34,7 +37,7 @@ public class FirstController {
 
     public void setGameView(GameView game) {
      this.game=game;
-     
+
     }
 
    public Object getGameModel() {
@@ -42,10 +45,8 @@ public class FirstController {
     }
 
 
-    public void setSquareArray(List<Cubo> squareArray) {
-        model.setSquareArray(squareArray);
-    }
 
-}  
+
+}
         
         
