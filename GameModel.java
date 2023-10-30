@@ -2,18 +2,21 @@
 package model;
 
 import controller.FirstController;
-import java.util.ArrayList;
-import java.util.List;
 
+import javax.swing.*;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class GameModel {
     private List<Cubo> squareArray;
     private FirstController myController;
+    private List<String> btnImages;
     public GameModel() {
         this.myController = myController;
         squareArray = new ArrayList<>();
-
+        btnImages = Arrays.asList("/images/image1.jpg", "/images/image2.jpg", "/images/image3.jpg", "/images/image4.jpg");
     }
        
     public void setFirstController(FirstController myController) {
@@ -28,20 +31,42 @@ public class GameModel {
         squareArray.add(cubo3);
         Cubo cubo4 = new Cubo("/images/image4.jpg",100,100);
         squareArray.add(cubo4);
-        Cubo cubo5 = new Cubo("/images/image4.jpg",100,100);
-        squareArray.add(cubo5);
-        Cubo cubo6 = new Cubo("/images/image3.jpg",100,100);
-        squareArray.add(cubo6);
-        Cubo cubo7 = new Cubo("/images/image2.jpg",100,100);
-        squareArray.add(cubo7);
-        Cubo cubo8 = new Cubo("/images/image1.jpg",100,100);
-        squareArray.add(cubo8);
         this.squareArray= squareArray;
     
     }
+    public void resetImage(){
+        this.squareArray.forEach(obj -> {
+            //ImageIcon newImage = new ImageIcon(this.btnImages.get(new Random().nextInt(this.btnImages.size())));
+            String newImage = this.btnImages.get(new Random().nextInt(this.btnImages.size()));
+            obj.setImage(newImage);
+            //obj.setImagePath(newImage);
+        });
+    }
     public List<Cubo> getSquareArray(){
           
-        return squareArray;}
+        return squareArray;
+    }
+
+    public Boolean checkMatch() {
+        AtomicReference<Boolean> match = new AtomicReference<>(Boolean.FALSE);
+
+        Set<String> newitemSet = new HashSet<>();
+        long numOfMatches = this.squareArray.stream()
+                .filter(cubo -> !newitemSet.add(cubo.getImagePath()))
+                .count();
+
+        this.squareArray.forEach(obj -> {
+            System.out.println("IMAGE  " + obj.getImagePath());
+        });
+
+        System.out.println("The list of duplicate Items: " + numOfMatches);
+
+        if (numOfMatches >= 1) {
+            match.set(Boolean.TRUE);
+        }
+
+        return match.get();
+    }
 }
 
 
