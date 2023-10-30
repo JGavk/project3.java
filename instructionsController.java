@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import view.*;
 
-public class instruccionController {
+public class instructionController {
     public static void EventoSalir(){
         NewJFrame newframe = new NewJFrame();
         
