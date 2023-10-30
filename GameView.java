@@ -81,31 +81,43 @@ public class GameView extends JFrame implements ActionListener {
     public void pressMe(boolean match) {
 
         if (match) {
-
             this.score += 5;
+;
         } else {
             this.fails -= 1;
         }
-
+        // actualizar jlabel de score
         scoreLabel.setText("Score: " + this.score);
         livesLabel.setText("Lives: "+ this.fails);
-        // actualizar jlabel de score
+        if (fails == 0) {
+            gamePanel.invalidate();
+            dispose();
+            EndView endFrame = new EndView(score, fails);
+        }
     }
-
     public void displaySquareArray(List<Cubo> squareArray) {
         this.squareArray = squareArray;
-        putImages(squareArray);
+        putImages(squareArray, false);
     }
-//Acomoda las imagenes en un lugar aleatorio, seleccionado para diferenciación del juego
-    public void putImages(List<Cubo> updatedSquareArray) {
-        //gamePanel.removeAll();
+
+    public void putImages(List<Cubo> updatedSquareArray, boolean reset) {
+
+        if (reset) {
+            buttonLabels.forEach(obj -> {
+                gamePanel.remove(obj);
+            });
+
+            buttonLabels = new ArrayList<>();
+        }
+
         int labelWidth = 100;
         int labelHeight = 100;
+
         Random random = new Random();
-        //Crea los diferentes JLabels para contener las imagenes
+
         for (int i = 0; i < updatedSquareArray.size(); i++) {
             Cubo cubo = updatedSquareArray.get(i);
-            System.out.println("img  "+ cubo.getImage());
+
             int x = random.nextInt(gamePanel.getWidth() - labelWidth);
             int y = random.nextInt(gamePanel.getHeight() - labelHeight);
 
@@ -114,21 +126,24 @@ public class GameView extends JFrame implements ActionListener {
             buttonLabels.add(label);
             gamePanel.add(label);
         }
-
+        if (fails==0){
+            gamePanel.invalidate();
+        }
         gamePanel.revalidate();
         gamePanel.repaint();
     }
-    //Actualiza las imagenes
+
     public void updateImages(List<Cubo> updatedSquareArray) {
-        
+
         for (int i = 0; i < updatedSquareArray.size(); i++) {
             Cubo cubo = updatedSquareArray.get(i);
-            System.out.println("img  "+ cubo.getImage());
 
             JLabel currentButtonLabel = buttonLabels.get(i);
             currentButtonLabel.setIcon(cubo.getImage());
         }
-
+        if (fails==0){
+            gamePanel.invalidate();
+        }
         gamePanel.revalidate();
         gamePanel.repaint();
     }
