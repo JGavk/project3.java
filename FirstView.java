@@ -1,11 +1,12 @@
 package view;
+import controller.FirstController;
 
-public class NewJFrame extends javax.swing.JFrame {
+public class FristView extends javax.swing.JFrame {
 
     /**
      * Creates new form FirstView
      */
-    public NewJFrame() {
+    public FristView() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -31,6 +32,11 @@ public class NewJFrame extends javax.swing.JFrame {
         btnIngresar.setText("JUGAR");
         btnIngresar.setMaximumSize(new java.awt.Dimension(150, 35));
         btnIngresar.setMinimumSize(new java.awt.Dimension(150, 35));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 630, 140, 40));
 
         btnInstrucciones.setBackground(new java.awt.Color(153, 153, 153));
@@ -50,6 +56,11 @@ public class NewJFrame extends javax.swing.JFrame {
         btnParaQSirve.setBackground(new java.awt.Color(153, 153, 153));
         btnParaQSirve.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnParaQSirve.setText("PARA QUÉ SIRVE?");
+        btnParaQSirve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnParaQSirveActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnParaQSirve, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 570, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.jpg"))); // NOI18N
@@ -60,7 +71,8 @@ public class NewJFrame extends javax.swing.JFrame {
                                               
     private void btnInstruccionesActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
-
+        controller.FirstController.EventoInstrucciones();
+        this.dispose();
     }                                                
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -71,7 +83,8 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void btnParaQSirveActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-        
+        controller.FirstController.EventoParaQSirve();
+        this.dispose();
     }                                             
 
     /**
@@ -110,5 +123,9 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInstrucciones;
     private javax.swing.JButton btnParaQSirve;
-    // End of variables declaration                   
+    // End of variables declaration
+    
+    public void setFirstController(FirstController myController) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
