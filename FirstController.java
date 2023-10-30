@@ -22,13 +22,6 @@ public class FirstController {
 
 
    }
-    public static void EventoIngresar() {
-       GameView newframe = new GameView();
-       
-       newframe.setVisible(true);
-       
-    }
-    
     public static void EventoInstrucciones(){
         InstructionsJFrame newframe = new InstructionsJFrame();
         
@@ -41,7 +34,7 @@ public class FirstController {
         newframe.setVisible(true);
     }
     
-    public void setFirstView(FirstView frame) {
+      public void setFirstView(FirstView frame) {
         this.frame=frame;
     }
     public void setSquareArray() {
@@ -75,6 +68,8 @@ public class FirstController {
 
     public void updateScore() {
         this.game.pressMe(this.model.checkMatch());
+        this.model.resetButton();
+        this.game.putImages(this.model.getSquareArray(), true);
     }
 
     public void setGameView(GameView game) {
