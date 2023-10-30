@@ -36,14 +36,14 @@ public class FirstView extends JFrame implements ActionListener {
         btnJoin = new JButton("JUGAR");
         btnJoin.setBounds(520,650, 150,35);
         jContent.add(btnJoin);
-        btnJoin.setFocusPainted(false);  
+        btnJoin.setFocusPainted(false);
         btnJoin.setFont(new Font("Arial", Font.BOLD, 24));
         btnJoin.setForeground(Color.WHITE);
         btnJoin.setBorder(null);
         btnJoin.setBackground(Color.BLACK);
         btnJoin.addActionListener(this);
-        //------------------------------------------------------------------------------------------- 
-        
+        //-------------------------------------------------------------------------------------------
+
         btnDo = new JButton("Para qué sirve");
         btnDo.setBounds(850, 580, 200, 60);
         jContent.add(btnDo);
@@ -51,9 +51,9 @@ public class FirstView extends JFrame implements ActionListener {
         btnDo.setBorder(null);
         btnDo.setFocusPainted(false);
         btnDo.setBackground(Color.GRAY);
-        btnDo.addActionListener(this);
+        btnDo.addActionListener(this::accionHecha);
         //--------------------------------------------------------------------------------------------
-        
+
         btnInstructions = new JButton ("Cómo Jugar");
         btnInstructions.setBounds(185,580,200,60);
         jContent.add(btnInstructions);
@@ -61,8 +61,8 @@ public class FirstView extends JFrame implements ActionListener {
         btnInstructions.setBorder(null);
         btnInstructions.setFocusPainted(false);
         btnInstructions.setBackground(Color.GRAY);
-        btnInstructions.addActionListener(this);
-        
+        btnInstructions.addActionListener(this::actionDone);
+
         //--------------------------------------------------------------------------------------------
 
     }
@@ -70,11 +70,21 @@ public class FirstView extends JFrame implements ActionListener {
     public void setFirstController(FirstController myController) {
         this.myController = myController;
     }
-    
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==btnJoin){
             myController.chargeGameFrame();
-            
+
         }
     }
+    public void accionHecha(ActionEvent n) {
+        if (n.getSource() == btnDo) {
+            myController.chargeImproveView();
+        }
+    }
+    public void actionDone(ActionEvent v){
+        if (v.getSource()==btnInstructions)
+            myController.chargeInstructionsView();
+    }
+
 }
