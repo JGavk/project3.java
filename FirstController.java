@@ -22,7 +22,25 @@ public class FirstController {
 
 
    }
-
+    public static void EventoIngresar() {
+       GameView newframe = new GameView();
+       
+       newframe.setVisible(true);
+       
+    }
+    
+    public static void EventoInstrucciones(){
+        InstructionsJFrame newframe = new InstructionsJFrame();
+        
+        newframe.setVisible(true);
+    }
+    
+    public static void EventoParaQSirve(){
+        WTGIFJFrame newframe = new WTGIFJFrame();
+        
+        newframe.setVisible(true);
+    }
+    
     public void setFirstView(FirstView frame) {
         this.frame=frame;
     }
