@@ -57,10 +57,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
-    private void btnInstruccionesActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
-    }                                                
+                                              
 
     /**
      * @param args the command line arguments
