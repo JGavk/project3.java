@@ -3,28 +3,35 @@ package view;
 import controller.FirstController;
 import javax.swing.Timer;
 import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.*;
 import model.Cubo;
+import model.GameModel;
+
 import java.util.Random;
-public class GameView extends JFrame {
+
+public class GameView extends JFrame implements ActionListener {
     private FirstController myController;
     private ImageIcon backgroundIcon;
-    private JLabel jContent;
+    private List<JLabel> buttonLabels;
     private JPanel gamePanel;
     private List<Cubo> squareArray;
     private JButton btnCompare;
+    private JLabel scoreLabel, livesLabel;
+    private int score = 0;
+    private int fails = 3;
 
-    public GameView() {
+    public GameView () {
+        this.buttonLabels = new ArrayList<>();
         startComponent();
+
     }
 
+
     private void startComponent() {
-        // Configuration of screen and background--------------------------------------------
-        //backgroundIcon = new ImageIcon(this.getClass().getResource("/images/background.jpg"));
-        //jContent = new JLabel(backgroundIcon);
-        //jContent.setSize(1200, 800);
         setTitle("GAME!!!");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 800);
@@ -32,29 +39,11 @@ public class GameView extends JFrame {
         setVisible(true);
         setResizable(false);
         setLayout(null);
-        //add(jContent);
         gamePanel = new JPanel();
-        gamePanel.setBackground(new java.awt.Color(102, 0, 204));
+        gamePanel.setBackground(new java.awt.Color(100, 50, 208));
         gamePanel.setLayout(null);
         gamePanel.setSize(1200, 800);
 
-
-        add(gamePanel);
-
-    }
-
-    public void setFirstController(FirstController myController) {
-        this.myController = myController;
-
-    }
-
-    public void displaySquareArray(List<Cubo> squareArray) {
-        System.out.println(squareArray);
-        // Limpia
-        gamePanel.removeAll();
-        int labelWidth = 100;
-        int labelHeight = 100;
-        Random random = new Random();
         btnCompare = new JButton("Wololo!");
         btnCompare.setBounds(900,650, 150,60);
         btnCompare.setFont(new Font("Arial", Font.BOLD, 24));
@@ -62,21 +51,87 @@ public class GameView extends JFrame {
         btnCompare.setForeground(Color.WHITE);
         btnCompare.setBorder(null);
         btnCompare.setBackground(Color.BLACK);
+        btnCompare.addActionListener( this);
         gamePanel.add(btnCompare);
 
-        for (int i = 0; i < 4 && i < squareArray.size(); i++) {
-            Cubo cubo = squareArray.get(i);
+        scoreLabel = new JLabel("Score: " + score);
+        scoreLabel.setBounds(0,5, 1220,200);
+        scoreLabel.setForeground(new java.awt.Color(255, 255, 255));
+        scoreLabel.setFont(new Font("arial", Font.BOLD, 25));
+        gamePanel.add(scoreLabel);
+        livesLabel = new JLabel("Lives: " + fails);
+        livesLabel.setBounds(200,5, 1220,200);
+        livesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        livesLabel.setFont(new Font("arial", Font.BOLD, 25));
+        gamePanel.add(livesLabel);
+        add(gamePanel);
 
-            // Randomiza x , y en el JPanel
+    }
+
+    public void setFirstController(FirstController myController) {
+        this.myController = myController;
+    }
+
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==btnCompare){
+            myController.updateScore();
+
+        }
+    }
+    public void pressMe(boolean match) {
+
+        if (match) {
+
+            this.score += 5;
+        } else {
+            this.fails -= 1;
+        }
+
+        scoreLabel.setText("Score: " + this.score);
+        livesLabel.setText("Lives: "+ this.fails);
+        // actualizar jlabel de score
+    }
+
+    public void displaySquareArray(List<Cubo> squareArray) {
+        this.squareArray = squareArray;
+        putImages(squareArray);
+    }
+//Acomoda las imagenes en un lugar aleatorio, seleccionado para diferenciación del juego
+    public void putImages(List<Cubo> updatedSquareArray) {
+        //gamePanel.removeAll();
+        int labelWidth = 100;
+        int labelHeight = 100;
+        Random random = new Random();
+        //Crea los diferentes JLabels para contener las imagenes
+        for (int i = 0; i < updatedSquareArray.size(); i++) {
+            Cubo cubo = updatedSquareArray.get(i);
+            System.out.println("img  "+ cubo.getImage());
             int x = random.nextInt(gamePanel.getWidth() - labelWidth);
             int y = random.nextInt(gamePanel.getHeight() - labelHeight);
 
             JLabel label = new JLabel(cubo.getImage());
             label.setBounds(x, y, labelWidth, labelHeight);
+            buttonLabels.add(label);
             gamePanel.add(label);
         }
 
         gamePanel.revalidate();
         gamePanel.repaint();
     }
+    //Actualiza las imagenes
+    public void updateImages(List<Cubo> updatedSquareArray) {
+        
+        for (int i = 0; i < updatedSquareArray.size(); i++) {
+            Cubo cubo = updatedSquareArray.get(i);
+            System.out.println("img  "+ cubo.getImage());
+
+            JLabel currentButtonLabel = buttonLabels.get(i);
+            currentButtonLabel.setIcon(cubo.getImage());
+        }
+
+        gamePanel.revalidate();
+        gamePanel.repaint();
+    }
+
+
 }
