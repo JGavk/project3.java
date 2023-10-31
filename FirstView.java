@@ -1,3 +1,8 @@
+/*
+Miguel Angel Soto Espitia 2240019
+Juan Pablo Puerta Gaviria 2240033
+18/10/23-31/10/23
+*/
 package view;
 import controller.FirstController;
 import java.awt.Color;
@@ -11,7 +16,7 @@ import javax.swing.*;
 
 public class FirstView extends JFrame implements ActionListener {
     private JLabel jBackground;
-    private JLabel jContent;
+    private JLabel jContent, title;
     private JButton btnJoin, btnDo, btnInstructions;
     private ImageIcon backgroundIcon;
     private FirstController myController;
@@ -31,6 +36,11 @@ public class FirstView extends JFrame implements ActionListener {
         setResizable(false);
         setLayout(null);
         add(jContent);
+        title = new JLabel("OBSERVA RAPIDO!");
+        title.setBounds(320,100,700,400);
+        title.setFont(new Font("Arial", Font.BOLD,60));
+        title.setForeground(Color.WHITE);
+        jContent.add(title);
         //-------------------------------------------------------------------------------------------
 
         btnJoin = new JButton("JUGAR");
@@ -66,22 +76,24 @@ public class FirstView extends JFrame implements ActionListener {
         //--------------------------------------------------------------------------------------------
 
     }
-
+//Manda comando al controlador para que realice cualquier accion que se necesite
     public void setFirstController(FirstController myController) {
         this.myController = myController;
     }
-
+//Llama a accion del btnJoin, descrita en el controlador
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==btnJoin){
             myController.chargeGameFrame();
 
         }
     }
+ //Llama a accion del btnDo, descrita en el controlador
     public void accionHecha(ActionEvent n) {
         if (n.getSource() == btnDo) {
             myController.chargeImproveView();
         }
     }
+//Llama a accion del btnInstructions, descrita en el controlador
     public void actionDone(ActionEvent v){
         if (v.getSource()==btnInstructions)
             myController.chargeInstructionsView();
