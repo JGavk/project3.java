@@ -40,9 +40,6 @@ public class Cubo {
         return this.imagePath;
     }
 
-    /*public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }*/
 
 
     public ImageIcon getImage() {
@@ -57,4 +54,5 @@ public class Cubo {
         return height;
     }
 }
+
 
