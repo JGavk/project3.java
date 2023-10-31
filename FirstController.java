@@ -1,3 +1,8 @@
+/*
+Miguel Angel Soto Espitia 2240019
+Juan Pablo Puerta Gaviria 2240033
+18/10/23-31/10/23
+*/
 package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
