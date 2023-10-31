@@ -1,3 +1,8 @@
+/*
+Miguel Angel Soto Espitia 2240019
+Juan Pablo Puerta Gaviria 2240033
+18/10/23-31/10/23
+*/
 package model;
 
 import java.awt.Image;
